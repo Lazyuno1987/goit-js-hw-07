@@ -3,7 +3,6 @@ import { galleryItems } from "./gallery-items.js";
 
 console.log(galleryItems);
 const galeryElement = document.querySelector(".gallery");
-galeryElement.addEventListener("click", onCreateModal);
 galeryElement.insertAdjacentHTML(
   "beforeend",
   oncreateMarkUpGalery(galleryItems)
@@ -19,10 +18,6 @@ function oncreateMarkUpGalery(galery) {
     .join("");
 }
 
-function onCreateModal(evt) {
-  evt.preventDefault();
-  if (!evt.target.classList.contains("gallery__image")) {
-    return;
-  }
+
   const lightbox = new SimpleLightbox(".gallery a", { captionsData: "alt" });
-}
+
