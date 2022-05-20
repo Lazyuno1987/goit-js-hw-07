@@ -3,7 +3,6 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 const galeryElement = document.querySelector(".gallery");
 galeryElement.addEventListener("click", onCreateModal);
-galeryElement.addEventListener("keydown", onCloseModal);
 galeryElement.insertAdjacentHTML(
   "beforeend",
   oncreateMarkUpGalery(galleryItems)
@@ -28,6 +27,8 @@ function oncreateMarkUpGalery(galery) {
 let instance;
 function onCreateModal(evt) {
   evt.preventDefault();
+  galeryElement.addEventListener("keydown", onCloseModal);
+  
   if (!evt.target.classList.contains("gallery__image")) {
     return;
   }
@@ -39,6 +40,8 @@ function onCreateModal(evt) {
 
 function onCloseModal(evt) {
   if (evt.code === "Escape") {
-    instance.close();
-  }
-}
+      instance.close() 
+       galeryElement.removeEventListener("keydown", onCloseModal)
+    }
+ }
+
